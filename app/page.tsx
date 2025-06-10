@@ -6,12 +6,11 @@ import { CopilotKit } from "@copilotkit/react-core";
 import { CopilotPopup } from "@copilotkit/react-ui";
 import "@copilotkit/react-ui/styles.css";
 
-// removed  runtimeUrl="/api/copilotkit"
 
 export default function Home() {
   return (
     <>
-      <CopilotKit publicApiKey="ck_pub_6d8aa6f01296d756f401ad05a81e14aa">
+      <CopilotKit publicApiKey={process.env.NEXT_PUBLIC_COPILOT_API_KEY}>
         <TasksProvider>
           <TasksList />
         </TasksProvider>
