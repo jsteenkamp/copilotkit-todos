@@ -9,6 +9,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Lint**: `pnpm lint` (runs Next.js ESLint configuration)
 - **Start production**: `pnpm start` (starts production server after build)
 
+## Environment Setup
+
+The application requires CopilotKit API configuration:
+- Copy `.env.example` to `.env.local`
+- Set `NEXT_PUBLIC_COPILOT_CLOUD_PUBLIC_API_KEY` with your CopilotKit Cloud API key
+
 ## Architecture
 
 This is a Next.js todo application integrated with CopilotKit for AI-powered interactions.
