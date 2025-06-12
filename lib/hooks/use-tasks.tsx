@@ -52,7 +52,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     handler: ({ id }) => {
       deleteTask(id);
     },
-    /*
+    /* generative UI - rendered in chat
     render: ({ status, args }) =>
       status === "complete" ? (
         <h2 style={{ color: "red" }}>Deleted {args.id}</h2>
