@@ -20,6 +20,8 @@ This one worked perfectly and also returned "[Waiting for 10 seconds...]" on eac
 
 "Do not create a duplicate task if there is already a task in the todo list the same title"
 
+"Do not add a duplicate task if there is already a task in the todo list with the same title"
+
 ```javascript
 useCopilotReadable({
     description: "The state of the todo list containing all tasks",
@@ -42,6 +44,15 @@ If you'd like to learn about CopilotKit, I recommend:
 Would you like to add a task related to learning about CopilotKit to your todo list?"
 
 Responding "yes" added a new task: "Research CopilotKit"
+
+Added `deleteTasks` action and removed `instructions` as the LLM responds with "There's already a task with the title "TEST TASK" in your todo list, so I won't add it again to avoid duplication." when asking it to add "TEST TASK" with no other "TEST TASK" in the list - seems to check the list after the task has been added, possibly due to way state updates sequence? This is likely a LLM context issue, the context is provided by `useCopilotReadable` and this updates reactively to state changes.
+
+The `<CopilotPopup instructions="..." />` instructions are added to the system prompt. Do not refer to state here. For example using "Do not add a duplicate task if there is already a task in the todo list with the same title" is referring to state of the todo list and you do not know what the todo list contains at the time the LLM checks it.
+
+Claude Code in response to " When does useCopilotReadable update the LLM context?": `useCopilotReadable` updates the LLM context reactively - whenever the value prop changes, the LLM gets the updated information.
+
+Be careful with system (information) prompts and how they are affected by state. [See guidelines for application state and system prompts question](https://claude.ai/share/9eccf2ab-0dde-4e3a-931e-64c482dec887)
+
 
 ### Anthropic Claude
 

@@ -10,6 +10,7 @@ type TasksContextType = {
   addTask: (title: string) => void;
   setTaskStatus: (id: number, status: TaskStatus) => void;
   deleteTask: (id: number) => void;
+  deleteTasks: (tasks: number[] | string) => void;
 };
 
 const TasksContext = createContext<TasksContextType | undefined>(undefined);
@@ -62,6 +63,22 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useCopilotAction({
+    name: "deleteTasks",
+    description: "Delete multiple tasks by their IDs",
+    parameters: [
+      {
+        name: "taskIds",
+        type: "string", // or "array"
+        description: "Comma-separated task IDs to delete",
+        required: true,
+      },
+    ],
+    handler: ({ taskIds }) => {
+      deleteTasks(taskIds);
+    },
+  });
+
+  useCopilotAction({
     name: "setTaskStatus",
     description: "Sets the status of a task",
     parameters: [
@@ -98,9 +115,18 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const deleteTasks = (ids: number[] | string) => {
+    if (typeof ids === "string") {
+      const taskIds = ids.split(",").map(Number);
+      setTasks(tasks.filter(({ id }) => !taskIds.includes(id)));
+    } else {
+      setTasks(tasks.filter(({ id }) => !ids.includes(id)));
+    }
+  };
+
   return (
     <TasksContext.Provider
-      value={{ tasks, addTask, setTaskStatus, deleteTask }}
+      value={{ tasks, addTask, setTaskStatus, deleteTask, deleteTasks }}
     >
       {children}
     </TasksContext.Provider>
