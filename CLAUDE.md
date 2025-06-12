@@ -41,3 +41,6 @@ Tasks are made readable to the AI through `useCopilotReadable` hook, allowing th
 
 ### Path Aliases
 Uses `@/*` alias pointing to root directory (configured in tsconfig.json).
+
+### MCP Servers
+- use the GitMCP `copilotkit-todos` MCP server that is configured in `.claude/settings.local.json` for additional project documentation.

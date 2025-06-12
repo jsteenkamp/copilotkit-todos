@@ -18,7 +18,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[]>(defaultTasks);
 
   useCopilotReadable({
-    description: "The state of the todo list",
+    description: "The state of the todo list containing all tasks",
     value: JSON.stringify(tasks),
   });
 
@@ -35,7 +35,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     ],
     handler: ({ title }) => {
       addTask(title);
-    }
+    },
   });
 
   useCopilotAction({
@@ -51,7 +51,14 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     ],
     handler: ({ id }) => {
       deleteTask(id);
-    }
+    },
+    /*
+    render: ({ status, args }) =>
+      status === "complete" ? (
+        <h2 style={{ color: "red" }}>Deleted {args.id}</h2>
+      ) : (
+        <h2 style={{ color: "blue" }}>Thinking...</h2>
+      ),*/
   });
 
   useCopilotAction({
@@ -74,7 +81,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     ],
     handler: ({ id, status }) => {
       setTaskStatus(id, status);
-    }
+    },
   });
 
   const addTask = (title: string) => {
@@ -83,18 +90,18 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
 
   const setTaskStatus = (id: number, status: TaskStatus) => {
     setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, status } : task
-      )
+      tasks.map((task) => (task.id === id ? { ...task, status } : task)),
     );
   };
 
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
-  
+
   return (
-    <TasksContext.Provider value={{ tasks, addTask, setTaskStatus, deleteTask }}>
+    <TasksContext.Provider
+      value={{ tasks, addTask, setTaskStatus, deleteTask }}
+    >
       {children}
     </TasksContext.Provider>
   );

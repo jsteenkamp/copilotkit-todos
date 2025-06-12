@@ -13,7 +13,7 @@ export default function Home() {
         <TasksProvider>
           <TasksList />
         </TasksProvider>
-        <CopilotPopup />
+        <CopilotPopup instructions="Do not create a duplicate task if there is already a task in the todo list the same title" />
       </CopilotKit>
     </>
   );
