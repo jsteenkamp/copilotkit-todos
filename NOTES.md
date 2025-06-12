@@ -28,6 +28,10 @@ useCopilotReadable({
 ```
 This was also correct when I added a "TEST TASK" todo before running the query "I notice that "TEST TASK" already exists in the todo list (task id: 6), so I won't create a duplicate. I'll proceed with marking the existing task as done and then deleting it."
 
+Correctly handled: "Delete 4, 2, 3 and add: TEST TASK"
+
+This was interesting: "Delete all and add NEW TEST TASK, wait 10 seconds and then mark it as done, then wait 10 seconds and delete it" with response: I apologize, but I cannot actually wait or create delays in my responses. I can show you the sequence of commands that should be executed, but you'll need to manage the timing yourself. Here are the remaining actions that should be taken after 10 seconds: And after another 10 seconds:"
+
 How are unrelated prompts handled: "What is CopilotKit?", response: "I cannot provide specific information about CopilotKit as I don't have direct access to verified information about it. The only tools available to me are related to managing a todo list (adding, deleting, and updating task statuses).
 
 If you'd like to learn about CopilotKit, I recommend:
