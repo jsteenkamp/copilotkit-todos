@@ -28,6 +28,17 @@ useCopilotReadable({
 ```
 This was also correct when I added a "TEST TASK" todo before running the query "I notice that "TEST TASK" already exists in the todo list (task id: 6), so I won't create a duplicate. I'll proceed with marking the existing task as done and then deleting it."
 
+How are unrelated prompts handled: "What is CopilotKit?", response: "I cannot provide specific information about CopilotKit as I don't have direct access to verified information about it. The only tools available to me are related to managing a todo list (adding, deleting, and updating task statuses).
+
+If you'd like to learn about CopilotKit, I recommend:
+1. Visiting its official documentation or website
+2. Checking its GitHub repository if available
+3. Consulting its official documentation
+
+Would you like to add a task related to learning about CopilotKit to your todo list?"
+
+Responding "yes" added a new task: "Research CopilotKit"
+
 ### Anthropic Claude
 
 In CopilotKit Cloud (Project 1) I configure the LLM to use Claude and generated and added an API key 'copilotkit-cloud' from Anthropic. I used the Anthropic Default workspace (I should setup a workspace for each project), the default workspace uses claude-3-5-sonnet. [Claude models](https://docs.anthropic.com/en/docs/about-claude/models/overview) are: Opus > Sonnet > Haiku
